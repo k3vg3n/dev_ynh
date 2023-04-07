@@ -23,6 +23,7 @@ ynh_script_progression --message="Setting up source files..." --weight=3
 
 # Download, check integrity, uncompress and patch the source from app.src
 git clone https://github.com/misskey-dev/misskey.git "$install_dir" --quiet
+git config --global --add safe.directory $install_dir
 
 pushd "$install_dir"
     git checkout $COMMIT --quiet
