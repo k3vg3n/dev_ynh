@@ -23,7 +23,14 @@ ynh_script_progression --message="Setting up source files..." --weight=3
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
+git clone https://github.com/misskey-dev/misskey.git "$install_dir" --quiet
 
+pushd "$install_dir"
+    git checkout $COMMIT --quiet
+    git submodule update --init
+popd
+
+chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
@@ -53,9 +60,9 @@ ynh_script_progression --message="Building app..." --weight=15
 
 pushd "$install_dir"
 	ynh_use_nodejs
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn add ts-node webpack
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH NODE_ENV=production yarn build
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn run init
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm install --frozen-lockfile
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH NODE_ENV=production pnpm build
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm run init
 popd
 
 #=================================================
