@@ -6,6 +6,8 @@
 
 NODEJS_VERSION="16.15.0"
 
+COMMIT="c75fc266e9b3704d92e462660761baba980188cd"
+
 # dependencies used by the app
 #REMOVEME? pkg_dependencies="ffmpeg postgresql"
 
