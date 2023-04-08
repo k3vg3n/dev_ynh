@@ -21,6 +21,7 @@ ynh_install_nodejs --nodejs_version=$NODEJS_VERSION
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=3
 
+ynh_app_setting_set --app=$app --key=install_dir --value=$install_dir
 # Download, check integrity, uncompress and patch the source from app.src
 git config --global --add safe.directory $install_dir
 git clone https://github.com/misskey-dev/misskey.git "$install_dir" --quiet
