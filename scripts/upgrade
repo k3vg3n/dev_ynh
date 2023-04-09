@@ -59,11 +59,14 @@ ynh_add_nginx_config
 ynh_script_progression --message="Building app..."
 
 pushd "$install_dir"
+	git checkout $COMMIT --quiet
+	git pull
+    git submodule update --init
     ynh_use_nodejs
-    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn cleanall
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH NODE_ENV=production yarn build
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn migrate
+    ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm cleanall
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH NODE_ENV=production pnpm install --frozen-lockfile
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH NODE_ENV=production pnpm build
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm migrate
 popd
 
 #=================================================
