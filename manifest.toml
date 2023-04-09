@@ -38,7 +38,7 @@ ram.runtime = "50M"
 [resources]
         [resources.sources.main]
         url = "https://github.com/misskey-dev/misskey/archive/refs/tags/13.11.1.tar.gz"
-        sha256 = "7315a18c9367537678c1c4120442b29e9828ae2bdc58721d1ec210f4e09b0dba"
+        sha256 = "2c2087ca59c513eca582811382dc92e9634767f55537aed168b55a2fea50435a"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
