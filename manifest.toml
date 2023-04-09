@@ -51,7 +51,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages ="ffmpeg postgresql"
+    packages ="ffmpeg postgresql git"
 
 
     [resources.database]

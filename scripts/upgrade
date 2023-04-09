@@ -30,7 +30,13 @@ ynh_systemd_action --service_name=$app --action="stop" --log_path=systemd --line
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..."
-
+	
+pushd "$install_dir"
+	git checkout master --quiet
+	git pull
+	git checkout $COMMIT
+    git submodule update --init
+popd
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" --keep=".config/default.yml"
 fi
@@ -59,9 +65,6 @@ ynh_add_nginx_config
 ynh_script_progression --message="Building app..."
 
 pushd "$install_dir"
-	git checkout master --quiet
-	git pull
-    git submodule update --init
     ynh_use_nodejs
     ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm cleanall
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm install --frozen-lockfile
