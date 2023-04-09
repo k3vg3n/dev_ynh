@@ -25,7 +25,7 @@ ynh_app_setting_set --app=$app --key=install_dir --value=$install_dir
 # Download, check integrity, uncompress and patch the source from app.src
 	git clone --recursive https://github.com/misskey-dev/misskey.git $install_dir --quiet
 pushd "$install_dir"
-#	git config --global --add safe.directory $install_dir
+	git config --global --add safe.directory $install_dir
     git checkout $COMMIT --quiet
     git submodule update --init
 popd
