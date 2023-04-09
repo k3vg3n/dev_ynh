@@ -37,8 +37,8 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/misskey-dev/misskey/archive/refs/tags/12.119.2.tar.gz"
-        sha256 = "0620c8d4ee82f3bfa5749197b719cff606628413875589918df58f71cae9df57"
+        url = "https://github.com/misskey-dev/misskey/archive/refs/tags/13.11.1.tar.gz"
+        sha256 = "7315a18c9367537678c1c4120442b29e9828ae2bdc58721d1ec210f4e09b0dba"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
@@ -53,9 +53,6 @@ ram.runtime = "50M"
     [resources.apt]
     packages ="ffmpeg postgresql"
 
-    extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
-    extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
-    extras.yarn.packages = "yarn"
 
     [resources.database]
     type = "postgresql"
